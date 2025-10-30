@@ -4,9 +4,9 @@
 This Python script provides an automated way to add multiple users to a Linux system using a structured input file, removing the need to manually type each command for every user.
 
 This program will handle the same commands automatically:
-sudo adduser username – to create a new account.
-sudo passwd username – to set the user’s password.
-sudo adduser username groupname – to add the user to one or more groups.
+1. sudo adduser username – to create a new account.
+2. sudo passwd username – to set the user’s password.
+3. sudo adduser username groupname – to add the user to one or more groups.
 
 The script combines all of these steps into a single automated process. By reading a formatted input file that contains the username, password, full name, and group memberships for each user, the script constructs and executes the necessary Linux commands for each entry. This ensures consistency, reduces human error, and saves time when managing multiple users.
 
