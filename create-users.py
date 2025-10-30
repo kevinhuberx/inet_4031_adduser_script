@@ -17,28 +17,27 @@ def main():
         # This regular expression checks if the line begins with a '#'
         # Lines starting with '#' are treated as comments in the input file and are skipped.
         match = re.match("^#",line)
-        print("The contents of the match variable: ", match)
+        # Dry Run Debug Print Statement
+        #print("The contents of the match variable: ", match)
         
         # Split the current line into parts separated by colons.
         # These parts represent the username, password, last name, first name, and the list of groups the user belongs to.
         fields = line.strip().split(':')
-        print("length of fields: ", len(fields))
+        # Dry Run Debug Print Statement
+        #print("length of fields: ", len(fields))
 
-        #REPLACE THESE COMMENTS with a single comment describing the logic of the IF
-        #what would an appropriate comment be for describing what this IF statement is checking for?
-        #what happens if the IF statement evaluates to true?
-        #how does this IF statement rely on what happened in the prior two lines of code? The match and fields lines.
-        #the code clearly shows that the variables match and the length of fields is being checked for being != 5  so why is it doing that?
-
-        # This checks whether the current line should be skipped or read
-        # 
-        # If the line starts with a # or does not contain exactly 5 fields, it is ignored for error handling
         
+        # This IF statement checks two conditions:
+        # If the line starts with a '#' (match is not None), meaning it is a comment and should be skipped.
+        # If the line does not have exactly 5 fields after splitting by ':' (len(fields) != 5), meaning it is incomplete or malformed. 
+        # If either condition is true, the 'continue' statement skips processing this line and moves to the next one.
         if match or len(fields) != 5:
             continue
 
-        print("Processing line:", line.strip())
-        print("Split fields:", fields)
+        # Dry Run Debug Print Statement
+        #print("Processing line:", line.strip())
+        #print("Split fields:", fields)
+        
         # Extract the username and password from the first two fields of the line 
         # gecos combines the two fields into the format expected for the /etc/passwd file 
         username = fields[0]
@@ -56,7 +55,8 @@ def main():
         # --disabled-password prevents the account from having a password until it is set 
         # --gecos sets the user information, such as first name, last name 
         cmd = "/usr/sbin/adduser --disabled-password --gecos '%s' %s" % (gecos,username)
-        print("User creation cmd", cmd)
+        # Dry Run Debug Print Statement
+        #print("User creation cmd", cmd)
 
         # These statements will execute the adduser command, for a dry run, leave these commented out.
         #print cmd
@@ -81,8 +81,12 @@ def main():
             if group != '-':
                 print("==> Assigning %s to the %s group..." % (username,group))
                 cmd = "/usr/sbin/adduser %s %s" % (username,group)
+                
+                # Dry Run Debug Print Statement
                 print("Group Command:", cmd)
                 print("=" * 50)
+                
+                # These statements will execute the adduser command, for a dry run, leave these commented out.
                 #print cmd
                 #os.system(cmd)
 
