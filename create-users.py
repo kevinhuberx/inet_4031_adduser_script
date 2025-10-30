@@ -19,11 +19,12 @@ def main():
         #REPLACE THIS COMMENT - this "regular expression" is searching for the presence of a character - what is it and why?
         #The important part is WHY it is looking for a particular characer - what is that character being used for?
         match = re.match("^#",line)
-
+        print("The contents of the match variable: ", match)
         #REPLACE THIS COMMENT - why is the code doing this?
         fields = line.strip().split(':')
+        print("length of fields: ", len(fields))
 
-        #REPLACE THESE COMMENTS with a single comment describing the logic of the IF 
+        #REPLACE THESE COMMENTS with a single comment describing the logic of the IF
         #what would an appropriate comment be for describing what this IF statement is checking for?
         #what happens if the IF statement evaluates to true?
         #how does this IF statement rely on what happened in the prior two lines of code? The match and fields lines.
@@ -31,6 +32,8 @@ def main():
         if match or len(fields) != 5:
             continue
 
+        print("Processing line:", line.strip())
+        print("Split fields:", fields)
         #REPLACE THIS COMMENT - what is the purpose of the next three lines. How does it relate to what is stored in the passwd file?
         username = fields[0]
         password = fields[1]
@@ -43,7 +46,7 @@ def main():
         print("==> Creating account for %s..." % (username))
         #REPLACE THIS COMMENT - what is this line doing?  What will the variable "cmd" contain.
         cmd = "/usr/sbin/adduser --disabled-password --gecos '%s' %s" % (gecos,username)
-
+        print("User creation cmd", cmd)
         #REMOVE THIS COMMENT AFTER YOU UNDERSTAND WHAT TO DO - these statements are currently "commented out" as talked about in class
         #The first time you run the code...what should you do here?  If uncommented - what will the os.system(cmd) statemetn attempt to do?
         #print cmd
@@ -53,7 +56,7 @@ def main():
         print("==> Setting the password for %s..." % (username))
         #REPLACE THIS COMMENT - what is this line doing?  What will the variable "cmd" contain. You'll need to lookup what these linux commands do.
         cmd = "/bin/echo -ne '%s\n%s' | /usr/bin/sudo /usr/bin/passwd %s" % (password,password,username)
-
+        print("Password command:", cmd)
         #REMOVE THIS COMMENT AFTER YOU UNDERSTAND WHAT TO DO - these statements are currently "commented out" as talked about in class
         #The first time you run the code...what should you do here?  If uncommented - what will the os.system(cmd) statemetn attempt to do?
         #print cmd
@@ -64,6 +67,8 @@ def main():
             if group != '-':
                 print("==> Assigning %s to the %s group..." % (username,group))
                 cmd = "/usr/sbin/adduser %s %s" % (username,group)
+                print("Group Command:", cmd)
+                print("=" * 50)
                 #print cmd
                 #os.system(cmd)
 
