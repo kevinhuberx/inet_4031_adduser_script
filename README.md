@@ -10,7 +10,7 @@ sudo adduser username groupname – to add the user to one or more groups.
 
 The script combines all of these steps into a single automated process. By reading a formatted input file that contains the username, password, full name, and group memberships for each user, the script constructs and executes the necessary Linux commands for each entry. This ensures consistency, reduces human error, and saves time when managing multiple users.
 
-### Program User Operation
+## Program User Operation
 
 This script automates the process of adding users to a Linux system using a predefined input file. The user prepares a text file containing all the required information for each user account, and the script reads this file line by line, generating and optionally executing the appropriate Linux commands to create the users, set their passwords, and assign them to groups.
 
